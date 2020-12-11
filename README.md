@@ -1,1 +1,1 @@
-# mbx_ci
+# Continuous integration scripts for the mbx toolset

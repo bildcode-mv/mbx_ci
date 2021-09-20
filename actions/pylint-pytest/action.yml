@@ -23,5 +23,5 @@ runs:
       shell: bash
     - run: pylint --rcfile=.pylintrc ${{ inputs.module_name }} || exit 0
       shell: bash
-    - run: if [ -d tests -o -d test  ]; then export PYTHONPATH=$(pwd) && pytest --cov=${{ inputs.module_name }} -v; else echo "tests not found" && exit 0; fi
+    - run: if [ -d tests -o -d test  ]; then export PYTHONPATH=$(pwd) && pytest --cov=${{ inputs.module_name }} tests/unit -v; else echo "tests not found" && exit 0; fi
       shell: bash

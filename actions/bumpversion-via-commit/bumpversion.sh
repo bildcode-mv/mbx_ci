@@ -1,5 +1,6 @@
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@mackevision.com"
+git config --global push.followTags true
 git remote set-url origin https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}
 LAST_COMMIT=$(git log -1 --pretty=%B)
 if [ -z "${LAST_COMMIT}" ]; then
@@ -23,3 +24,8 @@ echo "Bump ${BUMP_LEVEL} version"
 python -m pip install --upgrade pip
 pip install bump2version
 python -m bumpversion $BUMP_LEVEL --verbose
+git push
+git fetch --unshallow
+git checkout master
+git merge develop
+git push
